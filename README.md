@@ -9,6 +9,32 @@
 
 RFPilot is a self-hosted, open-source platform that helps IT pre-sales teams respond to RFPs (Requests for Proposals) faster and more accurately using AI.
 
+## Screenshots
+
+### Login
+![Login](docs/screenshots/01-login.png)
+
+### Dashboard
+![Dashboard](docs/screenshots/02-dashboard.png)
+
+### Create New RFP
+![New RFP](docs/screenshots/03-new-rfp.png)
+
+### RFP Repository
+![Repository](docs/screenshots/04-repository.png)
+
+### Proposal Intelligence (Analytics)
+![Analytics](docs/screenshots/05-analytics.png)
+
+### Settings
+![Settings](docs/screenshots/06-settings.png)
+
+### User Management (Admin)
+![User Management](docs/screenshots/07-user-management.png)
+
+### Audit Log (Admin)
+![Audit Log](docs/screenshots/08-audit-log.png)
+
 ## Two Core AI Engines
 
 ### Engine A — RFP Analysis
