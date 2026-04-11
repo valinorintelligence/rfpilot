@@ -21,10 +21,10 @@ class Settings(BaseSettings):
     SMTP_PORT: int = 587
     SMTP_USER: Optional[str] = None
     SMTP_PASS: Optional[str] = None
-    SMTP_FROM: str = "noreply@rfpilot.local"
+    SMTP_FROM: str = "noreply@rfpilot.com"
 
     # Default admin
-    ADMIN_EMAIL: str = "admin@rfpilot.local"
+    ADMIN_EMAIL: str = "admin@rfpilot.com"
     ADMIN_PASSWORD: str = "changeme"
     ADMIN_NAME: str = "Admin User"
 
