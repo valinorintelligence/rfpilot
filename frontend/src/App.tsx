@@ -9,10 +9,18 @@ import Repository from './pages/Repository'
 import RFPDetail from './pages/RFPDetail'
 import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
+import UserManagement from './pages/UserManagement'
+import AuditLog from './pages/AuditLog'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
   if (!isAuthenticated) return <Navigate to="/login" replace />
+  return <>{children}</>
+}
+
+function AdminRoute({ children }: { children: React.ReactNode }) {
+  const user = useAuthStore((s) => s.user)
+  if (user && user.role !== 'admin') return <Navigate to="/" replace />
   return <>{children}</>
 }
 
@@ -36,6 +44,8 @@ export default function App() {
           <Route path="rfp/:id" element={<RFPDetail />} />
           <Route path="analytics" element={<Analytics />} />
           <Route path="settings" element={<Settings />} />
+          <Route path="users" element={<AdminRoute><UserManagement /></AdminRoute>} />
+          <Route path="audit" element={<AdminRoute><AuditLog /></AdminRoute>} />
         </Route>
         <Route path="*" element={<Navigate to="/" replace />} />
       </Routes>

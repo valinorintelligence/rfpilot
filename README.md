@@ -38,17 +38,17 @@ Upload your capability documents alongside the RFP. AI cross-matches what the cl
 ### Three Commands
 
 ```bash
-git clone https://github.com/yourusername/rfpilot.git
+git clone https://github.com/valinorintelligence/rfpilot.git
 cd rfpilot
 cp .env.example .env
 # Edit .env → add your CLAUDE_API_KEY and set SECRET_KEY
 docker-compose up -d
 ```
 
-Open **http://localhost:3000** in your browser.
+Open **http://localhost:3080** in your browser.
 
 **Default admin login:**
-- Email: `admin@rfpilot.local`
+- Email: `admin@rfpilot.com`
 - Password: `changeme`
 
 > Change these immediately in production via the Settings page.
@@ -62,7 +62,7 @@ Open **http://localhost:3000** in your browser.
 │  ┌──────────────┐  ┌──────────────┐  ┌─────────────┐   │
 │  │  React SPA   │  │  FastAPI     │  │ PostgreSQL  │   │
 │  │  (Nginx)     │◄─►  Backend     │◄─►  Database   │   │
-│  │  Port 3000   │  │  Port 8000   │  │  Port 5432  │   │
+│  │  Port 3080   │  │  Port 8000   │  │  Port 5432  │   │
 │  └──────────────┘  └──────┬───────┘  └─────────────┘   │
 │                           │                              │
 │               ┌───────────▼──────────┐                  │

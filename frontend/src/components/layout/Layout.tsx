@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react'
 import { Link, useNavigate, Outlet, useLocation } from 'react-router-dom'
-import { LayoutDashboard, FileText, Database, BarChart3, Settings, User, LogOut } from 'lucide-react'
+import { LayoutDashboard, FileText, Database, BarChart3, Settings, User, Users, ClipboardList, LogOut } from 'lucide-react'
 import { useAuthStore } from '../../store/authStore'
 
 export default function Layout() {
@@ -24,6 +24,10 @@ export default function Layout() {
     { label: 'Repository', path: '/repository', icon: Database },
     { label: 'Analytics', path: '/analytics', icon: BarChart3 },
     { label: 'Settings', path: '/settings', icon: Settings },
+    ...(user?.role === 'admin' ? [
+      { label: 'Users', path: '/users', icon: Users },
+      { label: 'Audit Log', path: '/audit', icon: ClipboardList },
+    ] : []),
   ]
 
   const handleLogout = () => {

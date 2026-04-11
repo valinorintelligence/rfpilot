@@ -75,3 +75,27 @@ def list_users(
     current_user: User = Depends(require_role("admin", "manager")),
 ):
     return db.query(User).order_by(User.full_name).all()
+
+
+@router.patch("/users/{user_id}", response_model=UserResponse)
+def update_user(
+    user_id: str,
+    body: dict,
+    db: Session = Depends(get_db),
+    current_user: User = Depends(require_role("admin")),
+):
+    import uuid
+    user = db.query(User).filter(User.id == uuid.UUID(user_id)).first()
+    if not user:
+        raise HTTPException(status_code=404, detail="User not found")
+
+    if "is_active" in body:
+        user.is_active = body["is_active"]
+    if "role" in body:
+        user.role = body["role"]
+    if "department" in body:
+        user.department = body["department"]
+
+    db.commit()
+    db.refresh(user)
+    return user
