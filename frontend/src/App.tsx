@@ -1,5 +1,6 @@
 import { BrowserRouter, Routes, Route, Navigate } from 'react-router-dom'
 import { useAuthStore } from './store/authStore'
+import ErrorBoundary from './components/ErrorBoundary'
 import Layout from './components/layout/Layout'
 import Login from './pages/Login'
 import Register from './pages/Register'
@@ -11,6 +12,7 @@ import Analytics from './pages/Analytics'
 import Settings from './pages/Settings'
 import UserManagement from './pages/UserManagement'
 import AuditLog from './pages/AuditLog'
+import NotFound from './pages/NotFound'
 
 function ProtectedRoute({ children }: { children: React.ReactNode }) {
   const isAuthenticated = useAuthStore((s) => s.isAuthenticated)
@@ -26,6 +28,7 @@ function AdminRoute({ children }: { children: React.ReactNode }) {
 
 export default function App() {
   return (
+    <ErrorBoundary>
     <BrowserRouter>
       <Routes>
         <Route path="/login" element={<Login />} />
@@ -47,8 +50,9 @@ export default function App() {
           <Route path="users" element={<AdminRoute><UserManagement /></AdminRoute>} />
           <Route path="audit" element={<AdminRoute><AuditLog /></AdminRoute>} />
         </Route>
-        <Route path="*" element={<Navigate to="/" replace />} />
+        <Route path="*" element={<NotFound />} />
       </Routes>
     </BrowserRouter>
+    </ErrorBoundary>
   )
 }

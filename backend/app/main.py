@@ -6,7 +6,7 @@ from sqlalchemy import text
 
 from app.config import settings
 from app.database import SessionLocal
-from app.middleware import RequestLoggingMiddleware
+from app.middleware import RequestLoggingMiddleware, RateLimitMiddleware
 from app.routers import auth, rfps, analytics, settings_router, audit
 
 logging.basicConfig(
@@ -23,6 +23,7 @@ app = FastAPI(
 )
 
 app.add_middleware(RequestLoggingMiddleware)
+app.add_middleware(RateLimitMiddleware, max_requests=100, window_seconds=60)
 
 app.add_middleware(
     CORSMiddleware,
